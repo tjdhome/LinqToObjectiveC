@@ -209,4 +209,54 @@ the projection fails and returns nil.
  */
 - (NSNumber*)linq_sum;
 
+/**	Determines if an array contains an entry using its 'isEqual' as the test.
+ 
+ @param test The object to check for.
+ @return YES if the array contains the specified object.
+ */
+- (BOOL)linq_contains:(id)id;
+
+/**	Returns the elements of the first array that are NOT in the second.
+ 
+ @param second The array containing the subset of the elements.
+ @return An array of all elements in 'self' that are NOT found in 'second' (using 'isEqual')
+ */
+- (NSArray*)linq_except:(NSArray*)second;
+
+/**	returns an array of all objects found in the first array that ARE found in the second.
+ */
+- (NSArray*)linq_intersect:(NSArray*)second;
+
+/** returns an array of all objects found both in the first and the second arrays.
+ */
+- (NSArray*)linq_union:(NSArray*)second;
+
+/** Determines if two arrays contain the same items (regardless of order).
+ 
+ @param first The first array to test.
+ @param second The second array to test.
+ @return YES if both arrays contain the same elements (regardless of order).
+ */
++ (BOOL)linq_sequenceEqual:(NSArray*)first second:(NSArray*)second;
+
+/** Determines if this array contains the same items (regardless of order).
+ 
+ @param self The first array to test.
+ @param second The second array to test.
+ @return YES if both arrays contain the same elements (regardless of order).
+ */
+- (BOOL)linq_sequenceEqual:(NSArray*)second;
+
+/**
+ *  Returns a range from an array that meets a condition. Scanning stops
+ *  at the first entry that does NOT match.
+ */
+- (NSRange)rangeSatisfying:(LINQCondition)predicate startingIndex:(NSUInteger)index;
+
+/**
+ *  Returns a range from an array that meets a condition. Scanning stops
+ *  at the first entry that does NOT match.
+ */
+- (NSRange)rangeSatisfying:(LINQCondition)predicate withRange:(NSRange)range;
+
 @end

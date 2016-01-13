@@ -775,6 +775,7 @@
 				3EDC72381C4679F300A5372E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3EDC72581C467BC900A5372E /* Build configuration list for PBXNativeTarget "LinqToObjectiveC-OSX" */ = {
 			isa = XCConfigurationList;
@@ -783,6 +784,7 @@
 				3EDC725A1C467BC900A5372E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7E8F437C1A8B92D5000F5D01 /* Build configuration list for PBXProject "LinqToObjectiveC" */ = {
 			isa = XCConfigurationList;

@@ -271,4 +271,101 @@
     return [self valueForKeyPath: @"@sum.self"];
 }
 
+- (BOOL)linq_contains:(id)id
+{
+    return [self containsObject:id];
+}
+
+- (NSArray*)linq_except:(NSArray*)second
+{
+    NSMutableArray* result = [[NSMutableArray alloc] initWithCapacity:self.count];
+    for (id x in self)
+    {
+        if (![second linq_contains:x])
+            [result addObject:x];
+    }
+    
+    return result;
+}
+
+- (NSArray*)linq_intersect:(NSArray*)second
+{
+    NSMutableArray *r = [NSMutableArray new];
+    for (id q in self)
+    {
+        if ([second containsObject:q])
+            [r addObject:q];
+    }
+    
+    //    NSLog(@"left-side: %@", self);
+    //    NSLog(@"right-side: %@", second);
+    //    NSLog(@"intersection: %@", r);
+    return r;
+}
+
+- (NSArray*)linq_union:(NSArray *)second
+{
+    NSMutableArray *r = [[NSMutableArray alloc] initWithArray:self];
+    for (id x in second)
+    {
+        if (![r containsObject:x])
+            [r addObject:x];
+    }
+    
+    return r;
+}
+
+- (BOOL)linq_sequenceEqual:(NSArray*)second
+{
+    return [NSArray linq_sequenceEqual:self second:second];
+}
+
++ (BOOL)linq_sequenceEqual:(NSArray*)first second:(NSArray*)second
+{
+    if (first == second)
+        return YES;
+    
+    if ((nil == first) || (nil == second))
+        return NO;
+    
+    if ([first count] != [second count])
+        return NO;
+    
+    int i = 0;
+    for (id x in first)
+    {
+        id y = [second objectAtIndex:i++];
+        if (![x isEqual:y])
+            return NO;
+    }
+    
+    return YES;
+}
+
+- (NSRange)rangeSatisfying:(LINQCondition)predicate startingIndex:(NSUInteger)startingIndex
+{
+    NSRange range;
+    range.location = startingIndex;
+    range.length = [self count] - startingIndex;
+    return [self rangeSatisfying:predicate withRange:range];
+}
+
+- (NSRange)rangeSatisfying:(LINQCondition)predicate withRange:(NSRange)range
+{
+    NSUInteger pos = range.location;
+    NSUInteger limit = pos + range.length;
+    
+    while (pos < limit)
+    {
+        if (!predicate([self objectAtIndex:pos]))
+        {
+            break;
+        }
+        pos++;
+    }
+    
+    range.length = pos - range.location;
+    return range;
+}
+
 @end

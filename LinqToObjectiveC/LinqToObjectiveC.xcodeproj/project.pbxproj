@@ -358,7 +358,7 @@
 		7E8F43791A8B92D5000F5D01 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = scottlogic;
 				TargetAttributes = {
 					3EDC72251C4679F300A5372E = {
@@ -372,6 +372,7 @@
 					};
 					7EEE35A71AB4711000668C3E = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 5QV545NKKU;
 					};
 					7EEE35CA1AB4718500668C3E = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -602,6 +603,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -678,6 +680,7 @@
 		7EEE35BB1AB4711000668C3E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -691,7 +694,10 @@
 				INFOPLIST_FILE = "LinqToObjectiveC-iOS-dynamic/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.dodikk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LinqToObjectiveC;
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -702,6 +708,7 @@
 		7EEE35BC1AB4711000668C3E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -711,7 +718,9 @@
 				INFOPLIST_FILE = "LinqToObjectiveC-iOS-dynamic/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.dodikk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LinqToObjectiveC;
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -736,6 +745,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.dodikk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LinqToObjectiveC;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -757,6 +767,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.dodikk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LinqToObjectiveC;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";

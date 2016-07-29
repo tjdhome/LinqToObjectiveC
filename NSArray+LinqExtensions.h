@@ -22,6 +22,8 @@
 
 typedef BOOL (^LINQCondition)(id item);
 
+typedef BOOL (^LINQStaticCondition)(id a, id b);
+
 typedef id (^LINQSelector)(id item);
 
 typedef id (^LINQAccumulator)(id item, id aggregate);
@@ -216,6 +218,8 @@ the projection fails and returns nil.
  */
 - (BOOL)linq_contains:(id)id;
 
+- (BOOL)linq_contains:(id)thing predicate:(LINQStaticCondition)predicate;
+
 /**	Returns the elements of the first array that are NOT in the second.
  
  @param second The array containing the subset of the elements.
@@ -223,13 +227,19 @@ the projection fails and returns nil.
  */
 - (NSArray*)linq_except:(NSArray*)second;
 
+- (NSArray*)linq_except:(NSArray*)second predicate:(LINQStaticCondition)predicate;
+
 /**	returns an array of all objects found in the first array that ARE found in the second.
  */
 - (NSArray*)linq_intersect:(NSArray*)second;
 
+- (NSArray*)linq_intersect:(NSArray*)second predicate:(LINQStaticCondition)predicate;
+
 /** returns an array of all objects found both in the first and the second arrays.
  */
 - (NSArray*)linq_union:(NSArray*)second;
+
+- (NSArray*)linq_union:(NSArray *)second predicate:(LINQStaticCondition)predicate;
 
 /** Determines if two arrays contain the same items (regardless of order).
  

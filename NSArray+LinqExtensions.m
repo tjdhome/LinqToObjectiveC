@@ -273,7 +273,17 @@
 
 - (BOOL)linq_contains:(id)id
 {
-    return [self containsObject:id];
+    BOOL r = [self containsObject:id];
+	return r;
+}
+
+- (BOOL)linq_contains:(id)thing predicate:(LINQStaticCondition)predicate
+{
+	for (id x in self)
+	{
+		if (predicate(x, thing)) return YES;
+	}
+	return NO;
 }
 
 - (NSArray*)linq_except:(NSArray*)second
@@ -288,18 +298,39 @@
     return result;
 }
 
+- (NSArray*)linq_except:(NSArray*)second predicate:(LINQStaticCondition)predicate
+{
+    NSMutableArray* result = [[NSMutableArray alloc] initWithCapacity:self.count];
+    for (id x in self)
+    {
+        if (![second linq_contains:x predicate:predicate])
+            [result addObject:x];
+    }
+    
+    return result;
+}
+
 - (NSArray*)linq_intersect:(NSArray*)second
 {
     NSMutableArray *r = [NSMutableArray new];
     for (id q in self)
     {
-        if ([second containsObject:q])
+        if ([second linq_contains:q])
             [r addObject:q];
     }
-    
-    //    NSLog(@"left-side: %@", self);
-    //    NSLog(@"right-side: %@", second);
-    //    NSLog(@"intersection: %@", r);
+	
+    return r;
+}
+
+- (NSArray*)linq_intersect:(NSArray*)second predicate:(LINQStaticCondition)predicate
+{
+    NSMutableArray *r = [NSMutableArray new];
+    for (id q in self)
+    {
+        if ([second linq_contains:q predicate:predicate])
+            [r addObject:q];
+    }
+	
     return r;
 }
 
@@ -308,7 +339,19 @@
     NSMutableArray *r = [[NSMutableArray alloc] initWithArray:self];
     for (id x in second)
     {
-        if (![r containsObject:x])
+        if (![r linq_contains:x])
+            [r addObject:x];
+    }
+    
+    return r;
+}
+
+- (NSArray*)linq_union:(NSArray *)second predicate:(LINQStaticCondition)predicate
+{
+    NSMutableArray *r = [[NSMutableArray alloc] initWithArray:self];
+    for (id x in second)
+    {
+        if (![r linq_contains:x predicate:predicate])
             [r addObject:x];
     }
     

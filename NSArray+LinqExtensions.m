@@ -412,3 +412,35 @@
 }
 
 @end
+
+
+@implementation NSMutableArray(LINQExtensions)
+
+- (NSRange)rangeSatisfying:(LINQCondition)predicate startingIndex:(NSUInteger)startingIndex
+{
+    NSRange range;
+    range.location = startingIndex;
+    range.length = [self count] - startingIndex;
+    return [self rangeSatisfying:predicate withRange:range];
+}
+
+- (NSRange)rangeSatisfying:(LINQCondition)predicate withRange:(NSRange)range
+{
+    NSUInteger pos = range.location;
+    NSUInteger limit = pos + range.length;
+    
+    while (pos < limit)
+    {
+        if (!predicate([self objectAtIndex:pos]))
+        {
+            break;
+        }
+        pos++;
+    }
+    
+    range.length = pos - range.location;
+    return range;
+}
+
+@end
+
